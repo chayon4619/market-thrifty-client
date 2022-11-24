@@ -1,7 +1,8 @@
 import React from 'react';
 
-const PhoneCard = ({ phone }) => {
+const PhoneCard = ({ phone, setAddedPhone }) => {
     const { buyingPrice, condition, description, img, location, name, phoneNumber, postedTime, purchaseYear, sellerName, sellingPrice } = phone;
+
     return (
         <div>
             <div>
@@ -28,7 +29,7 @@ const PhoneCard = ({ phone }) => {
                     </div>
                     <div className="flex flex-wrap items-center justify-between">
                         <button className='btn btn-xs btn-outline text-gray-900 btn-error'>Report To admin</button>
-                        <button className='btn btn-sm btn-outline'>Book Now</button>
+                        <label htmlFor="booking-modal" onClick={() => setAddedPhone(phone)} className='btn btn-sm btn-outline'>Book Now</label>
                     </div>
                 </div>
             </div>
