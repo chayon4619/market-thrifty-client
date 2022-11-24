@@ -15,7 +15,7 @@ const AllUsers = () => {
 
     return (
         <div>
-            <h1>Users</h1>
+            <h1 className='text-3xl mb-8'>All Users</h1>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
