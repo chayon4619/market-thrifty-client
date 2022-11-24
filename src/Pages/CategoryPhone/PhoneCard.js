@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const PhoneCard = ({ phone, setAddedPhone }) => {
     const { buyingPrice, condition, description, img, location, name, phoneNumber, postedTime, purchaseYear, sellerName, sellingPrice } = phone;
+
+    const { user } = useContext(AuthContext)
+    console.log(user)
 
     return (
         <div>
             <div>
                 <div className="flex flex-col max-w-lg p-6 space-y-6 shadow-xl overflow-hidden rounded-lg  bg-gray-300 text-gray-900">
                     <div className="flex space-x-4">
-                        <img alt="" src="https://source.unsplash.com/100x100/?portrait" className="object-cover w-12 h-12 rounded-full shadow bg-gray-500" />
                         <div className="flex flex-col text-sm font-semibold space-y-1">
                             <span>{sellerName}</span>
-                            <span className="text-xs text-gray-900">Posted Time: {postedTime}</span>
+                            <span className="text-xs text-gray-900">Posted On: {postedTime}</span>
                         </div>
                     </div>
                     <div>

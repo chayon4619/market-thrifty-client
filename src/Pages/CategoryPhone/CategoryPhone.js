@@ -6,7 +6,6 @@ import PhoneCard from './PhoneCard';
 const CategoryPhone = () => {
     const data = useLoaderData();
     const [addedPhone, setAddedPhone] = useState('');
-    console.log(addedPhone)
 
     return (
         <div>

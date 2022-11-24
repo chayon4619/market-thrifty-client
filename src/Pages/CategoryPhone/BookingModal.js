@@ -5,7 +5,7 @@ import { AuthContext } from '../../contexts/AuthProvider';
 const BookingModal = ({ addedPhone, setAddedPhone }) => {
     const { user } = useContext(AuthContext);
 
-    const { name, sellingPrice } = addedPhone;
+    const { name, sellingPrice, img } = addedPhone;
 
     const handelSubmit = event => {
         event.preventDefault();
@@ -23,7 +23,8 @@ const BookingModal = ({ addedPhone, setAddedPhone }) => {
             price,
             phone,
             email,
-            address
+            address,
+            img
         }
 
 

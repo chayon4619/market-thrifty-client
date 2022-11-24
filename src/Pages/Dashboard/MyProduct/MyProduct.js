@@ -18,8 +18,6 @@ const MyProduct = () => {
         }
     })
 
-    console.log(bookings)
-
     return (
         <div>
             <h1 className='text-3xl mb-8'>My Bookings</h1>
@@ -29,6 +27,7 @@ const MyProduct = () => {
                         <tr>
                             <th></th>
                             <th>Name</th>
+                            <th>Photo</th>
                             <th>Device Name</th>
                             <th>Price</th>
                             <th>Phone Number</th>
@@ -40,6 +39,13 @@ const MyProduct = () => {
                             bookings.map((booking, i) =>
                                 <tr key={booking._id} className="hover">
                                     <th>{i + 1}</th>
+                                    <td>
+                                        <div className="avatar">
+                                            <div className="w-10 rounded-full ring ring-violet-300 ring-offset-base-100 ring-offset-2">
+                                                <img alt='' src={booking.img} />
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td>{booking.customerName}</td>
                                     <td>{booking.phoneName}</td>
                                     <td>{booking.price}$ </td>
