@@ -39,7 +39,7 @@ const Banner = () => {
                                     </svg>
                                     <span className="relative">The</span>
                                 </span>{' '}
-                                quick buy and resale product available
+                                quick buy and resale phone available
                             </h2>
                             <p className="text-base text-gray-700 md:text-lg">
                                 We provide our best services. Here you can buy or sell your useable mobile phone with a reasonable price. We satisfy both customer and seller also.
