@@ -1,37 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Category from './Category';
 
 const Categories = () => {
 
+    const [categoriesData, setCategoriesData] = useState([])
 
-    const categoriesData = [
-        {
-            _id: 1,
-            name: 'iPhone',
-        },
-        {
-            _id: 2,
-            name: 'Samsung',
-        },
-        {
-            _id: 3,
-            name: 'OnePlus',
-        },
-        {
-            _id: 4,
-            name: 'Xiaomi',
-        },
-        {
-            _id: 5,
-            name: 'Huawei',
-        },
-        {
-            _id: 6,
-            name: 'Others',
-        },
-    ]
-
-
+    useEffect(() => {
+        fetch(`http://localhost:5000/category`)
+            .then(res => res.json())
+            .then(data => {
+                setCategoriesData(data)
+            })
+    }, [])
 
     return (
         <div>
