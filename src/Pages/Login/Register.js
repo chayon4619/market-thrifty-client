@@ -17,17 +17,35 @@ const Register = () => {
         const password = form.password.value;
         const option = form.option.value;
 
+        const users = {
+            name,
+            email,
+            option
+        }
+
         createUser(email, password)
             .then(result => {
-                const user = result.user;
                 const userInfo = {
                     displayName: name
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        toast.success('User Created Successfully');
-                        navigate(from, { replace: true });
-                        form.reset();
+                        fetch(`http://localhost:5000/users`, {
+                            method: "POST",
+                            headers: {
+                                "content-type": "application/json"
+                            },
+                            body: JSON.stringify(users)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                console.log(data)
+                                toast.success('User Created Successfully');
+                                navigate(from, { replace: true });
+                                form.reset();
+                            })
+
+
                     })
                     .catch(err => {
                         console.error(err);
@@ -39,7 +57,6 @@ const Register = () => {
     const googleLogin = () => {
         handelGoogleLogin()
             .then(result => {
-                const user = result.user;
                 toast.success('User Created Successfully');
                 navigate(from, { replace: true });
             })
