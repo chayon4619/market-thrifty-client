@@ -13,6 +13,7 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Login/Register";
 import ErrorPage from "../Pages/Shared/ErrorPage/ErrorPage";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -38,14 +39,14 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/category/:id',
-                element: <CategoryPhone></CategoryPhone>,
+                element: <PrivateRoute><CategoryPhone></CategoryPhone></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/allphones/${params.id}`)
             },
         ]
     },
     {
         path: '/dashboard',
-        element: <DashboardLayout></DashboardLayout>,
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
             {
                 // booking product

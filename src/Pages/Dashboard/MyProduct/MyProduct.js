@@ -26,8 +26,8 @@ const MyProduct = () => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Name</th>
                             <th>Photo</th>
+                            <th>Name</th>
                             <th>Device Name</th>
                             <th>Price</th>
                             <th>Phone Number</th>
