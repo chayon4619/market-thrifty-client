@@ -13,7 +13,7 @@ const CheckOutForm = ({ booking }) => {
     const [transactionId, setTransactionId] = useState('');
 
 
-    const { price, customerName, email, _id } = booking
+    const { price, customerName, email, _id, productId } = booking
 
     useEffect(() => {
         fetch("http://localhost:5000/create-payment-intent", {
@@ -78,7 +78,8 @@ const CheckOutForm = ({ booking }) => {
                 price,
                 transactionId: paymentIntent.id,
                 email,
-                bookingId: _id
+                bookingId: _id,
+                productId: productId
             }
             fetch('http://localhost:5000/payments', {
                 method: 'POST',

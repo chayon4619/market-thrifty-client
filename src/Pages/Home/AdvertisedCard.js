@@ -2,7 +2,7 @@ import React from 'react';
 import VerifyIcon from '../Shared/VerifyIcon';
 
 const AdvertisedCard = ({ product }) => {
-    const { buyingPrice, condition, description, img, location, name, phoneNumber, postedTime, purchaseYear, sellerName, sellingPrice, role, _id, isReported, isBooked } = product;
+    const { buyingPrice, condition, description, img, location, name, phoneNumber, postedTime, purchaseYear, sellerName, sellingPrice, role } = product;
     return (
         <div>
             <div>
@@ -21,12 +21,12 @@ const AdvertisedCard = ({ product }) => {
                         <h2 className="mb-1 text-xl font-semibold">{name}</h2>
                         <p className="text-sm text-gray-900">{description}</p>
                         <div className='font-semibold grid grid-cols-2 mt-2'>
-                            <p className='text-emerald-700'>Buying Price : <span className='text-red-500'>${buyingPrice}</span></p>
-                            <p className='text-red-500'>Selling Price : <span className='text-emerald-700'>${sellingPrice}</span></p>
-                            <p className='mt-2 text-emerald-700'>Purchase Year : <span className='text-red-500'>{purchaseYear}</span></p>
-                            <p className='mt-2 text-red-500'>Condition : <span className='text-emerald-700'>{condition}</span></p>
-                            <p className='mt-2 text-emerald-700'>Location : <span className='text-red-500'> {location}</span></p>
-                            <p className='mt-2 text-red-500'>Mobile : <span className='text-emerald-700'> {phoneNumber}</span></p>
+                            <p className='text-gray-900'>Buying Price : <span className='text-cyan-600 font-bold'>${buyingPrice}</span></p>
+                            <p className='text-gray-900'>Selling Price : <span className='text-cyan-600 font-bold'>${sellingPrice}</span></p>
+                            <p className='mt-2 text-gray-900'>Purchase Year : <span className='text-cyan-600 font-bold'>{purchaseYear}</span></p>
+                            <p className='mt-2 text-gray-900'>Condition : <span className='text-cyan-600 font-bold'>{condition}</span></p>
+                            <p className='mt-2 text-gray-900'>Location : <span className='text-cyan-600 font-bold'> {location}</span></p>
+                            <p className='mt-2 text-gray-900'>Mobile : <span className='text-cyan-600'> {phoneNumber}</span></p>
                         </div>
                     </div>
                 </div>
