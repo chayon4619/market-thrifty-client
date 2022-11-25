@@ -30,6 +30,22 @@ const ManageSeller = () => {
         }
     }
 
+    const handelVerify = id => {
+        fetch(`http://localhost:5000/seller/admin/${id}`, {
+            method: "PUT",
+            headers: {
+                authorization: `bearer ${localStorage.getItem("marketThrifty-token")}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    toast.success('Seller Verified Successfully.');
+                    refetch()
+                }
+            })
+    }
+
     if (isLoading) {
         return <Loading></Loading>
     }
@@ -55,7 +71,11 @@ const ManageSeller = () => {
                                 <td>{sl.name}</td>
                                 <td>{sl.email}</td>
                                 <td>
-                                    <button className='btn btn-xs btn-outline'>Pending</button>
+                                    {
+                                        sl?.role !== "verified" ? <button onClick={() => handelVerify(sl._id)} className='btn btn-xs btn-outline'>Verify</button>
+                                            :
+                                            <p className='text-green-600 font-semibold'>Verified</p>
+                                    }
                                 </td>
                                 <td>
                                     <button onClick={() => handelDelete(sl._id)} className="btn btn-xs btn-outline btn-error">Delete</button>

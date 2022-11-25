@@ -5,7 +5,9 @@ import { AuthContext } from '../../../contexts/AuthProvider';
 
 const AddProduct = () => {
     const [categoriesData, setCategoriesData] = useState([]);
-    const { user } = useContext(AuthContext)
+    const [userData, setUserData] = useState({});
+    const { name: sellerName, role } = userData;
+    const { user } = useContext(AuthContext);
     useEffect(() => {
         fetch(`http://localhost:5000/category`)
             .then(res => res.json())
@@ -13,6 +15,17 @@ const AddProduct = () => {
                 setCategoriesData(data)
             })
     }, []);
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/users/add-product?email=${user?.email}`)
+            .then(res => res.json())
+            .then(data => {
+                setUserData(data)
+            })
+
+    }, [user?.email])
+
+
     const navigate = useNavigate();
 
 
@@ -29,7 +42,6 @@ const AddProduct = () => {
         const location = form.location.value;
         const purchaseYear = form.purchaseYear.value;
         const description = form.description.value;
-        const sellerName = form.userName.value;
         const img = form.photoURL.value;
         const categoryName = form.category.value;
         const sellerEmail = form.email.value
@@ -47,7 +59,8 @@ const AddProduct = () => {
             img,
             categoryName,
             postedTime: time,
-            sellerEmail
+            sellerEmail,
+            role
         }
 
         fetch(`http://localhost:5000/allphones`, {
@@ -59,13 +72,11 @@ const AddProduct = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 toast.success('Product Added Successfully');
                 navigate('/dashboard/my-products');
                 form.reset();
             })
 
-        console.log(productDetail)
     }
 
     return (
@@ -133,7 +144,7 @@ const AddProduct = () => {
                         <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
                             <div className="col-span-full sm:col-span-3">
                                 <label htmlFor="username" className="text-sm">Username</label>
-                                <input id="username" name='userName' type="text" placeholder="Username" className="w-full rounded-md p-2 focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 text-gray-900" />
+                                <input id="username" name='userName' type="text" placeholder="Username" disabled defaultValue={sellerName} className="w-full rounded-md p-2 focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 text-gray-900" />
                             </div>
                             <div className="col-span-full sm:col-span-3">
                                 <label htmlFor="phone" className="text-sm">Phone Number</label>

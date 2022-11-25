@@ -1,11 +1,8 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthProvider';
+import React from 'react';
+import VerifyIcon from '../Shared/VerifyIcon';
 
 const PhoneCard = ({ phone, setAddedPhone }) => {
-    const { buyingPrice, condition, description, img, location, name, phoneNumber, postedTime, purchaseYear, sellerName, sellingPrice } = phone;
-
-    const { user } = useContext(AuthContext)
-    console.log(user)
+    const { buyingPrice, condition, description, img, location, name, phoneNumber, postedTime, purchaseYear, sellerName, sellingPrice, role } = phone;
 
     return (
         <div>
@@ -13,7 +10,10 @@ const PhoneCard = ({ phone, setAddedPhone }) => {
                 <div className="flex flex-col max-w-lg p-6 space-y-6 shadow-xl overflow-hidden rounded-lg  bg-gray-300 text-gray-900">
                     <div className="flex space-x-4">
                         <div className="flex flex-col text-sm font-semibold space-y-1">
-                            <span>{sellerName}</span>
+                            <div className='flex'>
+                                <span className='mr-2'>{sellerName}</span>
+                                <span> {role === "verified" && <VerifyIcon></VerifyIcon>}</span>
+                            </div>
                             <span className="text-xs text-gray-900">Posted On: {postedTime}</span>
                         </div>
                     </div>
