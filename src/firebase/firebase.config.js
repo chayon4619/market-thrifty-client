@@ -1,12 +1,13 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCZz4l8JRy7w4KNWETwc10AS47AFapmwZ4",
-    authDomain: "market-thrifty.firebaseapp.com",
-    projectId: "market-thrifty",
-    storageBucket: "market-thrifty.appspot.com",
-    messagingSenderId: "382270496802",
-    appId: "1:382270496802:web:72e96a4ea5b313ceb12a7b"
+    apiKey: process.env.REACT_APP_apiKey,
+    authDomain: process.env.REACT_APP_authDomain,
+    projectId: process.env.REACT_APP_projectId,
+    storageBucket: process.env.REACT_APP_storageBucket,
+    messagingSenderId: process.env.REACT_APP_messagingSenderId,
+    appId: process.env.REACT_APP_appId
+
 };
 
 
