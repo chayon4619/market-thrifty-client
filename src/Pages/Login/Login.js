@@ -2,9 +2,10 @@ import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
+import Loading from '../Shared/Loading';
 
 const Login = () => {
-    const { login, handelGoogleLogin } = useContext(AuthContext);
+    const { login, handelGoogleLogin, loading } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
@@ -19,8 +20,24 @@ const Login = () => {
         login(email, password)
             .then(result => {
                 const user = result.user;
-                toast.success('User Successfully Log in');
-                navigate(from, { replace: true });
+                const currentUser = {
+                    email: user.email
+                }
+
+                // jwt implement
+                fetch('http://localhost:5000/jwt', {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('marketThrifty-token', data.token)
+                        toast.success('User Successfully Log in');
+                        navigate(from, { replace: true });
+                    })
                 form.reset();
             })
             .catch(err => {
@@ -32,12 +49,30 @@ const Login = () => {
         handelGoogleLogin()
             .then(result => {
                 const user = result.user;
-                toast.success('User Successfully Log in');
-                navigate(from, { replace: true });
+
+                const currentUser = {
+                    email: user.email
+                }
+                fetch('http://localhost:5000/jwt', {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('marketThrifty-token', data.token)
+                        toast.success('User Successfully Log in');
+                        navigate(from, { replace: true });
+                    });
             })
             .catch(err => console.error(err))
     }
 
+    if (loading) {
+        return <Loading></Loading>
+    }
 
     return (
         <div className='flex justify-center my-10 mx-2'>

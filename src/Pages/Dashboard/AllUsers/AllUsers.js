@@ -4,12 +4,14 @@ import toast from 'react-hot-toast';
 import Loading from '../../Shared/Loading';
 
 const AllUsers = () => {
-
-
     const { data: users = [], isLoading, refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users');
+            const res = await fetch('http://localhost:5000/users', {
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('marketThrifty-token')}`
+                }
+            });
             const data = await res.json();
             return data;
         }

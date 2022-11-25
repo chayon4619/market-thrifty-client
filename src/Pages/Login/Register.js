@@ -25,31 +25,72 @@ const Register = () => {
 
         createUser(email, password)
             .then(result => {
+                const user = result.user;
                 const userInfo = {
                     displayName: name
                 }
-                updateUser(userInfo)
-                    .then(() => {
-                        fetch(`http://localhost:5000/users`, {
-                            method: "POST",
-                            headers: {
-                                "content-type": "application/json"
-                            },
-                            body: JSON.stringify(users)
-                        })
-                            .then(res => res.json())
-                            .then(data => {
-                                console.log(data)
-                                toast.success('User Created Successfully');
-                                navigate(from, { replace: true });
-                                form.reset();
+
+                // jet implement
+                const currentUser = {
+                    email: user.email
+                }
+                fetch('http://localhost:5000/jwt', {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('marketThrifty-token', data.token);
+
+                        // update user
+                        updateUser(userInfo)
+                            .then(() => {
+                                fetch(`http://localhost:5000/users`, {
+                                    method: "POST",
+                                    headers: {
+                                        "content-type": "application/json"
+                                    },
+                                    body: JSON.stringify(users)
+                                })
+                                    .then(res => res.json())
+                                    .then(data => {
+                                        console.log(data)
+                                        toast.success('User Created Successfully');
+                                        navigate(from, { replace: true });
+                                        form.reset();
+                                    })
                             })
-
-
+                            .catch(err => {
+                                console.error(err);
+                            });
                     })
-                    .catch(err => {
-                        console.error(err);
-                    });
+                form.reset();
+
+                // updateUser(userInfo)
+                //     .then(() => {
+                //         fetch(`http://localhost:5000/users`, {
+                //             method: "POST",
+                //             headers: {
+                //                 "content-type": "application/json"
+                //             },
+                //             body: JSON.stringify(users)
+                //         })
+                //             .then(res => res.json())
+                //             .then(data => {
+                //                 console.log(data)
+                //                 toast.success('User Created Successfully');
+                //                 navigate(from, { replace: true });
+                //                 form.reset();
+                //             })
+
+
+                //     })
+                //     .catch(err => {
+                //         console.error(err);
+                //     });
             })
             .catch(err => console.error(err))
     }
@@ -57,8 +98,23 @@ const Register = () => {
     const googleLogin = () => {
         handelGoogleLogin()
             .then(result => {
-                toast.success('User Created Successfully');
-                navigate(from, { replace: true });
+                const user = result.user
+                const currentUser = {
+                    email: user.email
+                }
+                fetch('http://localhost:5000/jwt', {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('marketThrifty-token', data.token)
+                        toast.success('User Created Successfully');
+                        navigate(from, { replace: true });
+                    })
             })
             .catch(err => console.error(err))
     }

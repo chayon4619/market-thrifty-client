@@ -12,7 +12,11 @@ const MyProduct = () => {
     const { data: bookings = [] } = useQuery({
         queryKey: ['booking', user?.email],
         queryFn: async () => {
-            const res = await fetch(url);
+            const res = await fetch(url, {
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('marketThrifty-token')}`
+                }
+            });
             const data = await res.json();
             return data;
         }
