@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const MyProducts = () => {
@@ -13,7 +14,24 @@ const MyProducts = () => {
                 setSellerProduct(data)
             })
 
-    }, [user?.email])
+    }, [user?.email]);
+
+    const handelDelete = (id) => {
+        const agree = window.confirm('Are You sure to delete Product?');
+        if (agree) {
+            fetch(`http://localhost:5000/seller-product/${id}`, {
+                method: "DELETE",
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        toast.success(`Product deleted successfully`);
+                        const remaining = sellerProduct.filter(sp => sp._id !== id);
+                        setSellerProduct(remaining);
+                    }
+                })
+        }
+    }
 
     return (
         <div>
@@ -43,7 +61,7 @@ const MyProducts = () => {
                                     <button className="btn btn-xs btn-outline btn-info">Advertise</button>
                                 </td>
                                 <td>
-                                    <button className="btn btn-xs btn-outline btn-error">Delete</button>
+                                    <button onClick={() => handelDelete(sp._id)} className="btn btn-xs btn-outline btn-error">Delete</button>
                                 </td>
 
                             </tr>)
