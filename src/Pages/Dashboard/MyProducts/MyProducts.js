@@ -33,20 +33,20 @@ const MyProducts = () => {
         }
     };
 
-    // const handelAdvertise = id => {
-    //     fetch(`http://localhost:5000/advertise/${id}`, {
-    //         method: "PUT",
-    //         headers: {
-    //             authorization: `bearer ${localStorage.getItem("marketThrifty-token")}`
-    //         }
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             if (data.modifiedCount > 0) {
-    //                 toast.success('Advertise Done');
-    //             }
-    //         })
-    // }
+    const handelAdvertise = id => {
+        fetch(`http://localhost:5000/advertised/${id}`, {
+            method: "PUT",
+            headers: {
+                authorization: `bearer ${localStorage.getItem("marketThrifty-token")}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    toast.success('Advertise Done');
+                }
+            })
+    }
 
     return (
         <div>
@@ -58,7 +58,6 @@ const MyProducts = () => {
                             <th></th>
                             <th>Name</th>
                             <th>Price</th>
-                            <th>Status</th>
                             <th>Advertise</th>
                             <th>Action</th>
                         </tr>
@@ -70,12 +69,13 @@ const MyProducts = () => {
                                 <td>{sp.name}</td>
                                 <td>{sp.sellingPrice}$</td>
                                 <td>
-                                    <button className='btn btn-xs btn-outline'>Available</button>
-                                </td>
-                                <td>
-                                    {/* <button
-                                        onClick={() => handelAdvertise(sp._id)}
-                                        className="btn btn-xs btn-outline btn-info">Advertise</button> */}
+                                    {sp.advertised ?
+                                        <p className='text-green-500 font-semibold'>Advertised Done</p>
+                                        :
+                                        <button
+                                            onClick={() => handelAdvertise(sp._id)}
+                                            className="btn btn-xs btn-outline btn-info">Advertise</button>
+                                    }
                                 </td>
                                 <td>
                                     <button onClick={() => handelDelete(sp._id)} className="btn btn-xs btn-outline btn-error">Delete</button>
