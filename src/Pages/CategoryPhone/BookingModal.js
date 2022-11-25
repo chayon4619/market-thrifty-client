@@ -47,7 +47,6 @@ const BookingModal = ({ addedPhone, setAddedPhone }) => {
                 }
 
             })
-        console.log(bookingDetails)
 
     }
 
@@ -61,8 +60,8 @@ const BookingModal = ({ addedPhone, setAddedPhone }) => {
                     <form onSubmit={handelSubmit} className='grid grid-cols-1 gap-4 mt-10'>
                         <input type="number" disabled name='price' defaultValue={sellingPrice} className="input bg-gray-200  w-full " />
                         <input type="text" name="name" defaultValue={user?.displayName} disabled placeholder="Full Name" className="input input-bordered w-full " />
-                        <input type="tel" name='phone' placeholder="Phone Number" className="input input-bordered w-full " />
-                        <input type="text" name='address' placeholder="Meeting Address" className="input input-bordered w-full " />
+                        <input type="tel" name='phone' required placeholder="Phone Number" className="input input-bordered w-full " />
+                        <input type="text" name='address' required placeholder="Meeting Address" className="input input-bordered w-full " />
                         <input type="email" name='email' defaultValue={user?.email} disabled placeholder="Email" className="input input-bordered w-full " />
                         <input className='btn btn-dark' type="submit" value="Submit" />
                     </form>
