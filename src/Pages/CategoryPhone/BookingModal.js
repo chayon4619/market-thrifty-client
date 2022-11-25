@@ -5,7 +5,7 @@ import { AuthContext } from '../../contexts/AuthProvider';
 const BookingModal = ({ addedPhone, setAddedPhone }) => {
     const { user } = useContext(AuthContext);
 
-    const { name, sellingPrice, img } = addedPhone;
+    const { name, sellingPrice, img, _id } = addedPhone;
 
     const handelSubmit = event => {
         event.preventDefault();
@@ -38,8 +38,20 @@ const BookingModal = ({ addedPhone, setAddedPhone }) => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged) {
-                    toast.success('Booking Confirmed');
-                    form.reset()
+                    // booked
+                    fetch(`http://localhost:5000/booked/${_id}`, {
+                        method: "PUT",
+                        headers: {
+                            authorization: `bearer ${localStorage.getItem("marketThrifty-token")}`
+                        }
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.modifiedCount > 0) {
+                                toast.success('Booking Confirmed');
+                                form.reset();
+                            }
+                        })
                 }
                 else {
                     toast.error(data.message);

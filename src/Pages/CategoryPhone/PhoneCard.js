@@ -1,8 +1,24 @@
 import React from 'react';
+import toast from 'react-hot-toast';
 import VerifyIcon from '../Shared/VerifyIcon';
 
 const PhoneCard = ({ phone, setAddedPhone }) => {
-    const { buyingPrice, condition, description, img, location, name, phoneNumber, postedTime, purchaseYear, sellerName, sellingPrice, role } = phone;
+    const { buyingPrice, condition, description, img, location, name, phoneNumber, postedTime, purchaseYear, sellerName, sellingPrice, role, _id } = phone;
+
+    const handelReport = id => {
+        fetch(`http://localhost:5000/report/${id}`, {
+            method: "PUT",
+            headers: {
+                authorization: `bearer ${localStorage.getItem("marketThrifty-token")}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    toast.error('Reported');
+                }
+            })
+    }
 
     return (
         <div>
@@ -31,7 +47,9 @@ const PhoneCard = ({ phone, setAddedPhone }) => {
                         </div>
                     </div>
                     <div className="flex flex-wrap items-center justify-between">
-                        <button className='btn btn-xs btn-outline text-gray-900 btn-error'>Report To admin</button>
+                        <button
+                            onClick={() => handelReport(_id)}
+                            className='btn btn-xs btn-outline text-gray-900 btn-error'>Report To admin</button>
                         <label htmlFor="booking-modal" onClick={() => setAddedPhone(phone)} className='btn btn-sm btn-outline'>Book Now</label>
                     </div>
                 </div>

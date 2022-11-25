@@ -31,7 +31,22 @@ const MyProducts = () => {
                     }
                 })
         }
-    }
+    };
+
+    // const handelAdvertise = id => {
+    //     fetch(`http://localhost:5000/advertise/${id}`, {
+    //         method: "PUT",
+    //         headers: {
+    //             authorization: `bearer ${localStorage.getItem("marketThrifty-token")}`
+    //         }
+    //     })
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             if (data.modifiedCount > 0) {
+    //                 toast.success('Advertise Done');
+    //             }
+    //         })
+    // }
 
     return (
         <div>
@@ -58,7 +73,9 @@ const MyProducts = () => {
                                     <button className='btn btn-xs btn-outline'>Available</button>
                                 </td>
                                 <td>
-                                    <button className="btn btn-xs btn-outline btn-info">Advertise</button>
+                                    {/* <button
+                                        onClick={() => handelAdvertise(sp._id)}
+                                        className="btn btn-xs btn-outline btn-info">Advertise</button> */}
                                 </td>
                                 <td>
                                     <button onClick={() => handelDelete(sp._id)} className="btn btn-xs btn-outline btn-error">Delete</button>
