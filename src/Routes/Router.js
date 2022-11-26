@@ -14,6 +14,7 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Login/Register";
 import Payment from "../Pages/Payment/Payment";
 import ErrorPage from "../Pages/Shared/ErrorPage/ErrorPage";
+import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
@@ -60,11 +61,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/users',
-                element: <AllUsers></AllUsers>
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
             {
                 path: '/dashboard/manage-seller',
-                element: <ManageSeller></ManageSeller>
+                element: <AdminRoute><ManageSeller></ManageSeller></AdminRoute>
             },
             {
                 // seller product
@@ -73,7 +74,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/reported-product',
-                element: <ReportedProduct></ReportedProduct>
+                element: <AdminRoute><ReportedProduct></ReportedProduct></AdminRoute>
             },
             {
                 path: '/dashboard/payment/:id',
