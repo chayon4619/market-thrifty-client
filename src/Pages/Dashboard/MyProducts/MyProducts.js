@@ -44,6 +44,8 @@ const MyProducts = () => {
             .then(data => {
                 if (data.modifiedCount > 0) {
                     toast.success('Advertise Done');
+                    const remaining = sellerProduct.filter(sp => sp._id !== id);
+                    setSellerProduct(remaining);
                 }
             })
     }
@@ -58,6 +60,7 @@ const MyProducts = () => {
                             <th></th>
                             <th>Name</th>
                             <th>Price</th>
+                            <th>Status</th>
                             <th>Advertise</th>
                             <th>Action</th>
                         </tr>
@@ -68,6 +71,7 @@ const MyProducts = () => {
                                 <th>{i + 1}</th>
                                 <td>{sp.name}</td>
                                 <td>{sp.sellingPrice}$</td>
+                                <td>{sp.paid ? <p className='text-rose-500 font-bold'>Sold</p> : <p className='text-green-600 font-bold'>Available</p>}</td>
                                 <td>
                                     {sp.advertised ?
                                         <p className='text-green-500 font-semibold'>Advertised Done</p>
