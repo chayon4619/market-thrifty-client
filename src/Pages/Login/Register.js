@@ -57,7 +57,6 @@ const Register = () => {
                                 })
                                     .then(res => res.json())
                                     .then(data => {
-                                        console.log(data)
                                         toast.success('User Created Successfully');
                                         navigate(from, { replace: true });
                                         form.reset();
@@ -68,29 +67,6 @@ const Register = () => {
                             });
                     })
                 form.reset();
-
-                // updateUser(userInfo)
-                //     .then(() => {
-                //         fetch(`http://localhost:5000/users`, {
-                //             method: "POST",
-                //             headers: {
-                //                 "content-type": "application/json"
-                //             },
-                //             body: JSON.stringify(users)
-                //         })
-                //             .then(res => res.json())
-                //             .then(data => {
-                //                 console.log(data)
-                //                 toast.success('User Created Successfully');
-                //                 navigate(from, { replace: true });
-                //                 form.reset();
-                //             })
-
-
-                //     })
-                //     .catch(err => {
-                //         console.error(err);
-                //     });
             })
             .catch(err => console.error(err))
     }

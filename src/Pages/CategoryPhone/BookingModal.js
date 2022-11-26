@@ -41,20 +41,6 @@ const BookingModal = ({ addedPhone, setAddedPhone }) => {
                 if (data.acknowledged) {
                     toast.success('Booking Confirmed');
                     form.reset();
-                    // booked
-                    // fetch(`http://localhost:5000/booked/${_id}`, {
-                    //     method: "PUT",
-                    //     headers: {
-                    //         authorization: `bearer ${localStorage.getItem("marketThrifty-token")}`
-                    //     }
-                    // })
-                    //     .then(res => res.json())
-                    //     .then(data => {
-                    //         if (data.modifiedCount > 0) {
-                    //             toast.success('Booking Confirmed');
-                    //             form.reset();
-                    //         }
-                    //     })
                 }
                 else {
                     toast.error(data.message);
