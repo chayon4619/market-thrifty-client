@@ -6,7 +6,7 @@ const PhoneCard = ({ phone, setAddedPhone }) => {
     const { buyingPrice, condition, description, img, location, name, phoneNumber, postedTime, purchaseYear, sellerName, sellingPrice, role, _id, isReported } = phone;
 
     const handelReport = id => {
-        fetch(`http://localhost:5000/report/${id}`, {
+        fetch(`https://market-thrifty-server.vercel.app/report/${id}`, {
             method: "PUT",
             headers: {
                 authorization: `bearer ${localStorage.getItem("marketThrifty-token")}`

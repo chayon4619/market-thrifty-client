@@ -6,7 +6,7 @@ const AdvertisedProduct = () => {
     const [advertisedProduct, setAdvertisedProduct] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/advertised-product`, {
+        fetch(`https://market-thrifty-server.vercel.app/advertised-product`, {
             headers: {
                 authorization: `bearer ${localStorage.getItem("marketThrifty-token")}`
             }

@@ -16,7 +16,7 @@ const CheckOutForm = ({ booking }) => {
     const { price, customerName, email, _id, productId } = booking
 
     useEffect(() => {
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://market-thrifty-server.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -81,7 +81,7 @@ const CheckOutForm = ({ booking }) => {
                 bookingId: _id,
                 productId: productId
             }
-            fetch('http://localhost:5000/payments', {
+            fetch('https://market-thrifty-server.vercel.app/payments', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

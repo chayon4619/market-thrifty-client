@@ -43,7 +43,7 @@ export const router = createBrowserRouter([
             {
                 path: '/category/:id',
                 element: <PrivateRoute><CategoryPhone></CategoryPhone></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/allphones/${params.id}`)
+                loader: ({ params }) => fetch(`https://market-thrifty-server.vercel.app/allphones/${params.id}`)
             },
         ]
     },
@@ -80,7 +80,7 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({ params }) => fetch(`http://localhost:5000/booking/${params.id}`)
+                loader: ({ params }) => fetch(`https://market-thrifty-server.vercel.app/booking/${params.id}`)
             },
         ]
     }

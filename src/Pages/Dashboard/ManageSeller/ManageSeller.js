@@ -8,7 +8,7 @@ const ManageSeller = () => {
     const { data: seller, isLoading, refetch } = useQuery({
         queryKey: ['doctors'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/seller');
+            const res = await fetch('https://market-thrifty-server.vercel.app/seller');
             const data = await res.json();
             return data;
         }
@@ -17,7 +17,7 @@ const ManageSeller = () => {
     const handelDelete = (id) => {
         const agree = window.confirm('Are You sure to delete this seller?');
         if (agree) {
-            fetch(`http://localhost:5000/seller/${id}`, {
+            fetch(`https://market-thrifty-server.vercel.app/seller/${id}`, {
                 method: "DELETE"
             })
                 .then(res => res.json())
@@ -31,7 +31,7 @@ const ManageSeller = () => {
     }
 
     const handelVerify = id => {
-        fetch(`http://localhost:5000/seller/admin/${id}`, {
+        fetch(`https://market-thrifty-server.vercel.app/seller/admin/${id}`, {
             method: "PUT",
             headers: {
                 authorization: `bearer ${localStorage.getItem("marketThrifty-token")}`

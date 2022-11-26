@@ -6,7 +6,7 @@ const Categories = () => {
     const [categoriesData, setCategoriesData] = useState([])
 
     useEffect(() => {
-        fetch(`http://localhost:5000/category`)
+        fetch(`https://market-thrifty-server.vercel.app/category`)
             .then(res => res.json())
             .then(data => {
                 setCategoriesData(data)

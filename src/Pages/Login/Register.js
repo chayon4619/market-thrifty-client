@@ -34,7 +34,7 @@ const Register = () => {
                 const currentUser = {
                     email: user.email
                 }
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://market-thrifty-server.vercel.app/jwt', {
                     method: "POST",
                     headers: {
                         "content-type": "application/json"
@@ -48,7 +48,7 @@ const Register = () => {
                         // update user
                         updateUser(userInfo)
                             .then(() => {
-                                fetch(`http://localhost:5000/users`, {
+                                fetch(`https://market-thrifty-server.vercel.app/users`, {
                                     method: "POST",
                                     headers: {
                                         "content-type": "application/json"
@@ -78,7 +78,7 @@ const Register = () => {
                 const currentUser = {
                     email: user.email
                 }
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://market-thrifty-server.vercel.app/jwt', {
                     method: "POST",
                     headers: {
                         "content-type": "application/json"

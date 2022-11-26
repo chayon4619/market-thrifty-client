@@ -29,7 +29,7 @@ const BookingModal = ({ addedPhone, setAddedPhone }) => {
         }
 
 
-        fetch('http://localhost:5000/booking', {
+        fetch('https://market-thrifty-server.vercel.app/booking', {
             method: "POST",
             headers: {
                 "content-type": "application/json"

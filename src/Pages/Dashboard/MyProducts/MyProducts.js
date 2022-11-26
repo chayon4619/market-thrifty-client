@@ -8,7 +8,7 @@ const MyProducts = () => {
     const [sellerProduct, setSellerProduct] = useState([])
 
     useEffect(() => {
-        fetch(`http://localhost:5000/seller-product?email=${user?.email}`)
+        fetch(`https://market-thrifty-server.vercel.app/seller-product?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setSellerProduct(data)
@@ -19,7 +19,7 @@ const MyProducts = () => {
     const handelDelete = (id) => {
         const agree = window.confirm('Are You sure to delete Product?');
         if (agree) {
-            fetch(`http://localhost:5000/seller-product/${id}`, {
+            fetch(`https://market-thrifty-server.vercel.app/seller-product/${id}`, {
                 method: "DELETE",
             })
                 .then(res => res.json())
@@ -34,7 +34,7 @@ const MyProducts = () => {
     };
 
     const handelAdvertise = id => {
-        fetch(`http://localhost:5000/advertised/${id}`, {
+        fetch(`https://market-thrifty-server.vercel.app/advertised/${id}`, {
             method: "PUT",
             headers: {
                 authorization: `bearer ${localStorage.getItem("marketThrifty-token")}`

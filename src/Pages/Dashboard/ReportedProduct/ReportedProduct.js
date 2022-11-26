@@ -6,7 +6,7 @@ const ReportedProduct = () => {
     const [reportedProduct, setReportedProduct] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/reported-product')
+        fetch('https://market-thrifty-server.vercel.app/reported-product')
             .then(res => res.json())
             .then(data => {
                 setReportedProduct(data)
@@ -16,7 +16,7 @@ const ReportedProduct = () => {
     const handelDelete = (id) => {
         const agree = window.confirm('Are You sure to delete this seller?');
         if (agree) {
-            fetch(`http://localhost:5000/reported-del/${id}`, {
+            fetch(`https://market-thrifty-server.vercel.app/reported-del/${id}`, {
                 method: "DELETE"
             })
                 .then(res => res.json())

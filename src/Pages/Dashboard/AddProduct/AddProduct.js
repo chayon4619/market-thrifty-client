@@ -9,7 +9,7 @@ const AddProduct = () => {
     const { name: sellerName, role } = userData;
     const { user } = useContext(AuthContext);
     useEffect(() => {
-        fetch(`http://localhost:5000/category`)
+        fetch(`https://market-thrifty-server.vercel.app/category`)
             .then(res => res.json())
             .then(data => {
                 setCategoriesData(data)
@@ -17,7 +17,7 @@ const AddProduct = () => {
     }, []);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users/add-product?email=${user?.email}`)
+        fetch(`https://market-thrifty-server.vercel.app/users/add-product?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setUserData(data)
@@ -63,7 +63,7 @@ const AddProduct = () => {
             role
         }
 
-        fetch(`http://localhost:5000/allphones`, {
+        fetch(`https://market-thrifty-server.vercel.app/allphones`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"

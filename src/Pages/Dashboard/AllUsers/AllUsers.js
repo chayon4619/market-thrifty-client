@@ -7,7 +7,7 @@ const AllUsers = () => {
     const { data: users = [], isLoading, refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users', {
+            const res = await fetch('https://market-thrifty-server.vercel.app/users', {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('marketThrifty-token')}`
                 }
@@ -20,7 +20,7 @@ const AllUsers = () => {
     const handelDelete = (id) => {
         const agree = window.confirm('Are You sure to delete this User?');
         if (agree) {
-            fetch(`http://localhost:5000/users/${id}`, {
+            fetch(`https://market-thrifty-server.vercel.app/users/${id}`, {
                 method: "DELETE"
             })
                 .then(res => res.json())
