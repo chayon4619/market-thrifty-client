@@ -50,6 +50,12 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
 
+                const googleUser = {
+                    name: user.displayName,
+                    email: user.email,
+                    option: "Buyer"
+                };
+
                 const currentUser = {
                     email: user.email
                 }
@@ -62,9 +68,20 @@ const Login = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        localStorage.setItem('marketThrifty-token', data.token)
-                        toast.success('User Successfully Log in');
-                        navigate(from, { replace: true });
+                        localStorage.setItem('marketThrifty-token', data.token);
+
+                        fetch(`https://market-thrifty-server.vercel.app/users`, {
+                            method: "POST",
+                            headers: {
+                                "content-type": "application/json"
+                            },
+                            body: JSON.stringify(googleUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                toast.success('User Successfully Log in');
+                                navigate(from, { replace: true });
+                            })
                     });
             })
             .catch(err => console.error(err))

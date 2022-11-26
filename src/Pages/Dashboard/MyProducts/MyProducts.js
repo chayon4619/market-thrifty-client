@@ -44,8 +44,6 @@ const MyProducts = () => {
             .then(data => {
                 if (data.modifiedCount > 0) {
                     toast.success('Advertise Done');
-                    const remaining = sellerProduct.filter(sp => sp._id !== id);
-                    setSellerProduct(remaining);
                 }
             })
     }

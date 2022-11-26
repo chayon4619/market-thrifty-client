@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Category from './Category';
+import axios from 'axios'
 
 const Categories = () => {
 
     const [categoriesData, setCategoriesData] = useState([])
 
     useEffect(() => {
-        fetch(`https://market-thrifty-server.vercel.app/category`)
-            .then(res => res.json())
-            .then(data => {
-                setCategoriesData(data)
-            })
+        axios.get(`https://market-thrifty-server.vercel.app/category`)
+            .then(data => setCategoriesData(data.data))
+
     }, [])
 
     return (
