@@ -1,7 +1,7 @@
 # Market Thrifty repository
 
 ## Live Link
-Hosted in firebase [Market Thrifty](https://extreme-photography.web.app/).
+Hosted in firebase [Market Thrifty](https://market-thrifty.web.app/).
 
 ## Available Scripts
 
